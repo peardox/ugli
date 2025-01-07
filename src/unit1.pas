@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls;
   { ~/Library/Application Support/Steam/libraryfolders.vdf }
+  { C:\Program Files (x86)\Steam\config\libraryfolders.vdf }
 type
 
   { TForm1 }
