@@ -50,8 +50,8 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   {$if defined(WINDOWS)}
   Memo1.Text := ReadTextFile('C:\\Program Files (x86)\\Steam\\config\\libraryfolders.vdf');
-  {$elseif defined(MACOSX)}
-  Memo1.Text := ReadTextFile('~/Library/Application Support/Steam/libraryfolders.vdf');
+  {$elseif defined(DARWIN)}
+  Memo1.Text := ReadTextFile('/Users/simon/Library/Application Support/Steam/config/libraryfolders.vdf');
   {$endif}
 end;
 

@@ -1,30 +1,28 @@
 object Form1: TForm1
-  Left = -1190
-  Height = 1038
-  Top = 168
-  Width = 1121
+  Left = 1242
+  Height = 692
+  Top = 154
+  Width = 628
   Caption = 'Form1'
-  ClientHeight = 1038
-  ClientWidth = 1121
-  DesignTimePPI = 144
-  FormStyle = fsSystemStayOnTop
+  ClientHeight = 692
+  ClientWidth = 628
   OnCreate = FormCreate
   LCLVersion = '3.6.0.0'
   object Panel1: TPanel
     Left = 0
-    Height = 1038
+    Height = 692
     Top = 0
-    Width = 1121
+    Width = 628
     Align = alClient
     Caption = 'Panel1'
-    ClientHeight = 1038
-    ClientWidth = 1121
+    ClientHeight = 692
+    ClientWidth = 628
     TabOrder = 0
     object Memo1: TMemo
       Left = 1
-      Height = 1036
+      Height = 690
       Top = 1
-      Width = 1119
+      Width = 626
       Align = alClient
       Lines.Strings = (
         'Memo1'
