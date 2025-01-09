@@ -24,6 +24,7 @@ type
 
 var
   Form1: TForm1;
+  SteamPath: String;
 
 implementation
 
@@ -49,11 +50,15 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   {$if defined(WINDOWS)}
-  Memo1.Text := ReadTextFile('C:\\Program Files (x86)\\Steam\\config\\libraryfolders.vdf');
+  // Computer\HKEY_CURRENT_USER\Software\Valve\Steam SteamPath
+  SteamPath := 'C:\\Program Files (x86)\\Steam';
+  Memo1.Text := ReadTextFile(SteamPath + '\\config\\libraryfolders.vdf');
   {$elseif defined(DARWIN)}
-  Memo1.Text := ReadTextFile(GetUserDir() + 'Library/Application Support/Steam/config/libraryfolders.vdf');
+  SteamPath := GetUserDir() + 'Library/Application Support/Steam';
+  Memo1.Text := ReadTextFile(SteamPath + '/config/libraryfolders.vdf');
   {$elseif defined(LINUX)}
-  Memo1.Text := ReadTextFile(GetUserDir() + '.local/share/Steam/config/libraryfolders.vdf');
+  SteamPath := GetUserDir() + '.local/share/Steam';
+  Memo1.Text := ReadTextFile(SteamPath + '/config/libraryfolders.vdf');
   {$endif}
 end;
 
