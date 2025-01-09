@@ -51,7 +51,7 @@ begin
   {$if defined(WINDOWS)}
   Memo1.Text := ReadTextFile('C:\\Program Files (x86)\\Steam\\config\\libraryfolders.vdf');
   {$elseif defined(DARWIN)}
-  Memo1.Text := ReadTextFile('/Users/simon/Library/Application Support/Steam/config/libraryfolders.vdf');
+  Memo1.Text := ReadTextFile(GetUserDir() + 'Library/Application Support/Steam/config/libraryfolders.vdf');
   {$endif}
 end;
 
