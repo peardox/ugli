@@ -34,12 +34,27 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="src/unit1.pas"/>
+        <Filename Value="src/mainform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit1"/>
+        <UnitName Value="MainForm"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/fileutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FileUtils"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/network.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Network"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/winutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="WinUtils"/>
       </Unit>
     </Units>
   </ProjectOptions>
