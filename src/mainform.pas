@@ -36,7 +36,7 @@ uses
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
-  Apps: String;
+  Apps: TSteamApps;
 begin
   {$if defined(WINDOWS)}
   // Computer\HKEY_CURRENT_USER\Software\Valve\Steam SteamPath
@@ -50,8 +50,10 @@ begin
   Memo1.Text := ReadTextFile(SteamPath + '/config/libraryfolders.vdf');
   {$endif}
   Apps := ReadApplist;
-  if Length(Apps) > 0 then
-     Memo1.Text := Apps;
+  if Assigned(Apps) then
+     begin
+       ShowMessage('Apps = ' + IntToStr(Apps.Count));
+     end;
 end;
 
 end.
