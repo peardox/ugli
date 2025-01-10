@@ -7,21 +7,27 @@ interface
 uses
   Classes, SysUtils;
 
-function ReadURLGet(url:string):string;
+function ReadApplist:string;
 
 implementation
 
-uses fphttpclient;
+uses
+  fphttpclient,
+  opensslsockets;
 
-function ReadURLGet(url:string):string;
+function ReadApplist:string;
+var
+   S: String;
+   C: TFPHttpClient;
 begin
-{
-with TFPHTTPClient.Create(nil) do
-try
-  Result := Get(url);
-finally
-  Free;
-}
+  S := '';
+  C := TFPHttpClient.Create(Nil);
+  try
+    S := C.Get('https://api.steampowered.com/ISteamApps/GetAppList/v2/');
+  finally
+    C.Free;
+  end;
+  Result := S;
 end;
 
 

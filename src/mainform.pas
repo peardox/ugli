@@ -35,6 +35,8 @@ uses
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+  Apps: String;
 begin
   {$if defined(WINDOWS)}
   // Computer\HKEY_CURRENT_USER\Software\Valve\Steam SteamPath
@@ -47,6 +49,9 @@ begin
   SteamPath := GetUserDir() + '.local/share/Steam';
   Memo1.Text := ReadTextFile(SteamPath + '/config/libraryfolders.vdf');
   {$endif}
+  Apps := ReadApplist;
+  if Length(Apps) > 0 then
+     Memo1.Text := Apps;
 end;
 
 end.
