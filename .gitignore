@@ -22,7 +22,11 @@ lib/
 # https://docwiki.embarcadero.com/RADStudio/Sydney/en/API_(*.rsm)
 *.rsm
 *.local
-__recovery
+__history/
+__recovery/
+backup/
+Win32/
+Win64/
 *.deployproj
 *.delphilsp.json
 

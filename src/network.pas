@@ -1,11 +1,20 @@
 unit Network;
 
+{$ifdef fpc}
 {$mode ObjFPC}{$H+}
+{$endif}
+
 
 interface
 
 uses
-  Classes, SysUtils, Generics.Collections;
+  Classes, SysUtils,
+{$ifdef fpc}
+  Generics.Collections
+{$else}
+  System.Generics.Collections, System.Net.HttpClient
+{$endif}
+  ;
 
 type
   TSteamAppItem = Class
@@ -18,18 +27,24 @@ type
     property Name: String read FName write FName;
   end;
 
-  TSteamApps = specialize TObjectList<TSteamAppItem>;
+
+ TSteamApps = {$ifdef fpc}specialize {$endif}TObjectList<TSteamAppItem>;
+
 
 function ReadApplist: TSteamApps;
 
 implementation
 
 uses
-  dialogs,
+{$ifdef fpc}
   fpjson,
   jsonparser,
   fphttpclient,
-  opensslsockets;
+  opensslsockets
+{$else}
+  System.JSON
+{$endif}
+  ;
 
 constructor TSteamAppItem.Create(const AKey: Int64; AValue: String);
 begin
@@ -41,16 +56,22 @@ function ReadApplist: TSteamApps;
 var
    Dict: TSteamApps;
    S, V: String;
+   C: THTTPClient;
+   R: IHTTPResponse;
+   {
    C: TFPHttpClient;
    Val, J, D: TJSONData;
    K, cnt, idx: Integer;
+   }
    Item: TSteamAppItem;
 begin
   S := '';
   Dict := Nil;
-  C := TFPHttpClient.Create(Nil);
+  C := THttpClient.Create;
   try
-    S := C.Get('https://api.steampowered.com/ISteamApps/GetAppList/v2/');
+    R := C.Get('https://api.steampowered.com/ISteamApps/GetAppList/v2/');
+    S := R.ContentAsString();
+    {
     J := GetJSON(S);
     D := J.FindPath('applist.apps');
     cnt := D.Count;
@@ -63,6 +84,7 @@ begin
         Item := TSteamAppItem.Create(K, V);
         Dict.Add(Item);
       end;
+      }
   finally
     C.Free;
   end;

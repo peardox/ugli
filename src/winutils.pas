@@ -1,6 +1,7 @@
 unit WinUtils;
-
+{$ifdef fpc}
 {$mode ObjFPC}{$H+}
+{$endif}
 
 interface
 

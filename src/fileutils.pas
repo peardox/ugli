@@ -1,6 +1,9 @@
 unit FileUtils;
 
+{$ifdef fpc}
 {$mode ObjFPC}{$H+}
+{$endif}
+
 
 interface
 
