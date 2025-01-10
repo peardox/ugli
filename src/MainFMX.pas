@@ -26,8 +26,12 @@ Uses
   Network;
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+   Dict: TSteamApps;
 begin
-  ReadApplist();
+  Dict := ReadApplist();
+  if Assigned(Dict) then
+    ShowMessage('Apps = ' + IntToStr(Dict.Count));
 end;
 
 end.

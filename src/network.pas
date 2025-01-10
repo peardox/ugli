@@ -58,11 +58,10 @@ var
    S, V: String;
    C: THTTPClient;
    R: IHTTPResponse;
-   {
-   C: TFPHttpClient;
-   Val, J, D: TJSONData;
+   J, Val: TJsonValue;
+   O: TJsonObject;
+   D: TJsonArray;
    K, cnt, idx: Integer;
-   }
    Item: TSteamAppItem;
 begin
   S := '';
@@ -71,20 +70,20 @@ begin
   try
     R := C.Get('https://api.steampowered.com/ISteamApps/GetAppList/v2/');
     S := R.ContentAsString();
-    {
-    J := GetJSON(S);
-    D := J.FindPath('applist.apps');
+
+    J := TJSONObject.ParseJSONValue(S);
+    O := J as TJSONObject;
+    D := O.GetValue<TJsonArray>('applist.apps');
     cnt := D.Count;
     Dict := TSteamApps.Create;
     for idx := 0 to cnt - 1 do
       begin
         Val := D.Items[idx];
-        K := Val.FindPath('appid').AsInt64;
-        V := Val.FindPath('name').AsString;
+        K := Val.FindValue('appid').Value.ToInt64;
+        V := Val.FindValue('name').Value;
         Item := TSteamAppItem.Create(K, V);
         Dict.Add(Item);
       end;
-      }
   finally
     C.Free;
   end;

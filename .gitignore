@@ -27,8 +27,11 @@ __recovery/
 backup/
 Win32/
 Win64/
+OSXARM64/
+OSX64/
 *.deployproj
 *.delphilsp.json
+*.TemplateOSX.xml
 
 # Other backups
 *.blend1
